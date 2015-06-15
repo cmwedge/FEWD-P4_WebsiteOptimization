@@ -1,5 +1,5 @@
-Front-End Web Developer Nanodegree Project 4
-============================================
+Front-End Web Developer Nanodegree Project 4: Website Optimization
+==================================================================
 ##Part 1 - Portfolio Main Page Optimization:
 
 ###index.html
