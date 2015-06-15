@@ -1,6 +1,6 @@
 Front-End Web Developer Nanodegree Project 4
 ============================================
-Part 1 - Portfolio Main Page Optimization:
+####Part 1 - Portfolio Main Page Optimization:
 
 ###index.html
 - Inlined style.css
@@ -14,7 +14,7 @@ Part 1 - Portfolio Main Page Optimization:
 - Compressed and reduced size of pizzeria thumbnail
 
 
-Part 2 - Pizzeria Page Optimization:
+####Part 2 - Pizzeria Page Optimization:
 
 ###assets
 - Minified CSS
