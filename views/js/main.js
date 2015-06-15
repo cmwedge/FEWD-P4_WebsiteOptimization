@@ -149,7 +149,7 @@ String.prototype.capitalize = function() {
 };
 
 
-// Pulls adjective out of array using random number sent from generator
+// moved these arrays to global scope to avoid creating them repeatedly.
 var darkAdj = ["dark","morbid", "scary", "spooky", "gothic", "deviant", "creepy", "sadistic", "black", "dangerous", "dejected", "haunted", 
 "morose", "tragic", "shattered", "broken", "sad", "melancholy", "somber", "dark", "gloomy", "homicidal", "murderous", "shady", "misty", 
 "dusky", "ghostly", "shadowy", "demented", "cursed", "insane", "possessed", "grotesque", "obsessed"];
@@ -194,6 +194,7 @@ var scientificAdj = ["scientific", "technical", "digital", "programming", "calcu
 "innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar", 
 "extinct", "galactic"];
 
+// Pulls adjective out of array using random number sent from generator
 function getAdj(x){
   switch(x) {
     case "dark": 
@@ -219,6 +220,7 @@ function getAdj(x){
   }
 }
 
+// moved these arrays to global scope to avoid creating them repeatedly.
 var animalsNouns = ["flamingo", "hedgehog", "owl", "elephant", "pussycat", "alligator", "dachsund", "poodle", "beagle", "crocodile", "kangaroo", 
       "wallaby", "woodpecker", "eagle", "falcon", "canary", "parrot", "parakeet", "hamster", "gerbil", "squirrel", "rat", "dove", "toucan", 
       "raccoon", "vulture", "peacock", "goldfish", "rook", "koala", "skunk", "goat", "rooster", "fox", "porcupine", "llama", "grasshopper", 
@@ -425,41 +427,30 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldsize = oldwidth / windowwidth;
-
-    // TODO: change to 3 sizes? no more xl?
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 0.25;
-        case "2":
-          return 0.3333;
-        case "3":
-          return 0.5;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
+// moved outside to its own function
+// TODO: change to 3 sizes? no more xl?
+// Changes the slider value to a percent width
+  function sizeSwitcher(size) {
+    switch (size) {
+      case "1":
+        return 25;
+      case "2":
+        return 33;
+      case "3":
+        return 50;
+      default:
+        console.log("bug in sizeSwitcher");
     }
-
-    var newsize = sizeSwitcher(size);
-    var dx = (newsize - oldsize) * windowwidth;
-
-    return dx;
   }
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     // move selector out of loop
     var randPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var sizePerc = sizeSwitcher(size);
     for (var i = 0; i < randPizzas.length; i++) {
-      var dx = determineDx(randPizzas[i], size);
-      var newwidth = (documentrandPizzas[i].offsetWidth + dx) + 'px';
-      randPizzas[i].style.width = newwidth;
+      // changed to use percents
+      randPizzas[i].style.width = sizePerc + '%';
     }
   }
 
@@ -506,16 +497,15 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
-  ticking = false;
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // get top and bottom of window
+  // get top of window
   var scrtp = document.body.scrollTop;
-  var scrbtm = scrtp + window.height;
-  
+
   // move selector out of loop, pre-calculate phases
   var items = document.querySelectorAll('.mover');
+
   var phases = [
       100 * Math.sin(scrtp/1250 + 0),
       100 * Math.sin(scrtp/1250 + 1),
@@ -525,10 +515,7 @@ function updatePositions() {
   ];
 
   for (var i = 0; i < items.length; i++) {
-    // only update if on screen
-    var rect = items[i].getBoundingClientRect();
-    if(rect.top > scrtp && rect.top < scrbtm)
-      items[i].style.left = items[i].basicLeft + phases[i%5] + 'px';
+    items[i].style.transform = 'translate3d(' + phases[i % 5] + 'px, 0px, 0px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -547,15 +534,17 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var rows = Math.ceil(screen.height / s);
   // moved selector outside of loop
   var movingPizzas = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < rows * cols; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    // changed style to properly reflect image ration
+    elem.style.width = "77px";
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas.appendChild(elem);
   }
