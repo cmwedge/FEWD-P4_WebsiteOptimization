@@ -9,6 +9,7 @@ Set print CSS stylesheet link to use media query.
 
 
 
-Frames: between 19 and 36 ms
-Down to 0.7 to 2.7 after
-	pre-calculate phases: JS 500ish
+pre-calculate phases: JS 500ish
+query selector outside of loop: 
+	changePizzaSlices
+	addEventListener
