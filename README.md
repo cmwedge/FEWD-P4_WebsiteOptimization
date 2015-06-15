@@ -1,5 +1,9 @@
 Front-End Web Developer Nanodegree Project 4: Website Optimization
 ==================================================================
+##Installation / Run Instructions
+1. Download project files from this repository (e.g., via clone or download zip)
+2. Double-click index.html to load main page in your default browser
+
 ##Part 1 - Portfolio Main Page Optimization:
 
 ###index.html
@@ -34,11 +38,15 @@ Front-End Web Developer Nanodegree Project 4: Website Optimization
  - Moved .randomPizzaContainer selector outside loop
  - Added necessary determineDx functionality
  - Resize uses percentages instead of pixels
+ - Store pizza array length outside array
+ - Changed querySelectAll to getElementsByClassName
 - updatePositions
  - Moved scrollTop reference out of loop
  - Moved phase calculation out of loop
  - Translate X to move pizzas rather than changing left style
  - Translate Z 0px to encourage browser to move pizzas to separate layer
+ - Changed querySelectAll to getElementsByClassName
+ - Changed querySelector to getElementById
 - DOMContentLoaded handler
  - Changed pizza.png dimensions to reflect actual dimensions
  - Removed basicLeft property and simply set left

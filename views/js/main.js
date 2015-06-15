@@ -1,3 +1,4 @@
+"use strict";
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
@@ -144,24 +145,24 @@ pizzaIngredients.crusts = [
 
 // Name generator pulled from http://saturdaykid.com/usernames/generator.html
 // Capitalizes first letter of each word
-String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 
 // moved these arrays to global scope to avoid creating them repeatedly.
-var darkAdj = ["dark","morbid", "scary", "spooky", "gothic", "deviant", "creepy", "sadistic", "black", "dangerous", "dejected", "haunted", 
-"morose", "tragic", "shattered", "broken", "sad", "melancholy", "somber", "dark", "gloomy", "homicidal", "murderous", "shady", "misty", 
+var darkAdj = ["dark", "morbid", "scary", "spooky", "gothic", "deviant", "creepy", "sadistic", "black", "dangerous", "dejected", "haunted",
+"morose", "tragic", "shattered", "broken", "sad", "melancholy", "somber", "dark", "gloomy", "homicidal", "murderous", "shady", "misty",
 "dusky", "ghostly", "shadowy", "demented", "cursed", "insane", "possessed", "grotesque", "obsessed"];
 
 var colorsAdj = ["blue", "green", "purple", "grey", "scarlet", "NeonGreen", "NeonBlue", "NeonPink", "HotPink", "pink", "black", "red",
 "maroon", "silver", "golden", "yellow", "orange", "mustard", "plum", "violet", "cerulean", "brown", "lavender", "violet", "magenta",
-"chestnut", "rosy", "copper", "crimson", "teal", "indigo", "navy", "azure", "periwinkle", "brassy", "verdigris", "veridian", "tan", 
+"chestnut", "rosy", "copper", "crimson", "teal", "indigo", "navy", "azure", "periwinkle", "brassy", "verdigris", "veridian", "tan",
 "raspberry", "beige", "sandy", "ElectricBlue", "white", "champagne", "coral", "cyan"];
 
 var whimsyAdj = ["whimsical", "silly", "drunken", "goofy", "funny", "weird", "strange", "odd", "playful", "clever", "boastful", "breakdancing",
 "hilarious", "conceited", "happy", "comical", "curious", "peculiar", "quaint", "quirky", "fancy", "wayward", "fickle", "yawning", "sleepy",
-"cockeyed", "dizzy", "dancing", "absurd", "laughing", "hairy", "smiling", "perplexed", "baffled", "cockamamie", "vulgar", "hoodwinked", 
+"cockeyed", "dizzy", "dancing", "absurd", "laughing", "hairy", "smiling", "perplexed", "baffled", "cockamamie", "vulgar", "hoodwinked",
 "brainwashed"];
 
 var shinyAdj = ["sapphire", "opal", "silver", "gold", "platinum", "ruby", "emerald", "topaz", "diamond", "amethyst", "turquoise",
@@ -170,7 +171,7 @@ var shinyAdj = ["sapphire", "opal", "silver", "gold", "platinum", "ruby", "emera
 
 var noisyAdj = ["untuned", "loud", "soft", "shrieking", "melodious", "musical", "operatic", "symphonic", "dancing", "lyrical", "harmonic",
 "orchestral", "noisy", "dissonant", "rhythmic", "hissing", "singing", "crooning", "shouting", "screaming", "wailing", "crying", "howling",
-"yelling", "hollering", "caterwauling", "bawling", "bellowing", "roaring", "squealing", "beeping", "knocking", "tapping", "rapping", 
+"yelling", "hollering", "caterwauling", "bawling", "bellowing", "roaring", "squealing", "beeping", "knocking", "tapping", "rapping",
 "humming", "scatting", "whispered", "whispering", "rasping", "buzzing", "whirring", "whistling", "whistled"];
 
 var apocalypticAdj = ["nuclear", "apocalyptic", "desolate", "atomic", "zombie", "collapsed", "grim", "fallen", "collapsed", "cannibalistic",
@@ -179,113 +180,113 @@ var apocalypticAdj = ["nuclear", "apocalyptic", "desolate", "atomic", "zombie", 
 
 var insultingAdj = ["stupid", "idiotic", "fat", "ugly", "hideous", "grotesque", "dull", "dumb", "lazy", "sluggish", "brainless", "slow",
 "gullible", "obtuse", "dense", "dim", "dazed", "ridiculous", "witless", "daft", "crazy", "vapid", "inane", "mundane", "hollow", "vacuous",
-"boring", "insipid", "tedious", "monotonous", "weird", "bizarre", "backward", "moronic", "ignorant", "scatterbrained", "forgetful", "careless", 
+"boring", "insipid", "tedious", "monotonous", "weird", "bizarre", "backward", "moronic", "ignorant", "scatterbrained", "forgetful", "careless",
 "lethargic", "insolent", "indolent", "loitering", "gross", "disgusting", "bland", "horrid", "unseemly", "revolting", "homely", "deformed",
-"disfigured", "offensive", "cowardly", "weak", "villainous", "fearful", "monstrous", "unattractive", "unpleasant", "nasty", "beastly", "snide", 
+"disfigured", "offensive", "cowardly", "weak", "villainous", "fearful", "monstrous", "unattractive", "unpleasant", "nasty", "beastly", "snide",
 "horrible", "syncophantic", "unhelpful", "bootlicking"];
 
 var praiseAdj = ["beautiful", "intelligent", "smart", "genius", "ingenious", "gorgeous", "pretty", "witty", "angelic", "handsome", "graceful",
 "talented", "exquisite", "enchanting", "fascinating", "interesting", "divine", "alluring", "ravishing", "wonderful", "magnificient", "marvelous",
-"dazzling", "cute", "charming", "attractive", "nifty", "delightful", "superior", "amiable", "gentle", "heroic", "courageous", "valiant", "brave", 
-"noble", "daring", "fearless", "gallant", "adventurous", "cool", "enthusiastic", "fierce", "awesome", "radical", "tubular", "fearsome", 
+"dazzling", "cute", "charming", "attractive", "nifty", "delightful", "superior", "amiable", "gentle", "heroic", "courageous", "valiant", "brave",
+"noble", "daring", "fearless", "gallant", "adventurous", "cool", "enthusiastic", "fierce", "awesome", "radical", "tubular", "fearsome",
 "majestic", "grand", "stunning"];
 
 var scientificAdj = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
-"innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar", 
+"innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar",
 "extinct", "galactic"];
 
 // Pulls adjective out of array using random number sent from generator
-function getAdj(x){
-  switch(x) {
-    case "dark": 
-      return darkAdj;
-    case "color": 
-      return colorsAdj;
-    case "whimsical": 
-      return whimsyAdj;
-    case "shiny":
-      return shinyAdj;
-    case "noisy":
-      return noisyAdj;
-    case "apocalyptic":
-      return apocalypticAdj;
-    case "insulting":
-      return insultingAdj;
-    case "praise":
-      return praiseAdj;
-    case "scientific":
-      return scientificAdj;
-    default:
-      return scientificAdj;
-  }
+function getAdj(x) {
+    switch (x) {
+        case "dark":
+            return darkAdj;
+        case "color":
+            return colorsAdj;
+        case "whimsical":
+            return whimsyAdj;
+        case "shiny":
+            return shinyAdj;
+        case "noisy":
+            return noisyAdj;
+        case "apocalyptic":
+            return apocalypticAdj;
+        case "insulting":
+            return insultingAdj;
+        case "praise":
+            return praiseAdj;
+        case "scientific":
+            return scientificAdj;
+        default:
+            return scientificAdj;
+    }
 }
 
 // moved these arrays to global scope to avoid creating them repeatedly.
-var animalsNouns = ["flamingo", "hedgehog", "owl", "elephant", "pussycat", "alligator", "dachsund", "poodle", "beagle", "crocodile", "kangaroo", 
-      "wallaby", "woodpecker", "eagle", "falcon", "canary", "parrot", "parakeet", "hamster", "gerbil", "squirrel", "rat", "dove", "toucan", 
-      "raccoon", "vulture", "peacock", "goldfish", "rook", "koala", "skunk", "goat", "rooster", "fox", "porcupine", "llama", "grasshopper", 
-      "gorilla", "monkey", "seahorse", "wombat", "wolf", "giraffe", "badger", "lion", "mouse", "beetle", "cricket", "nightingale", 
-      "hawk", "trout", "squid", "octopus", "sloth", "snail", "locust", "baboon", "lemur", "meerkat", "oyster", "frog", "toad", "jellyfish", 
-      "butterfly", "caterpillar", "tiger", "hyena", "zebra", "snail", "pig", "weasel", "donkey", "penguin", "crane", "buzzard", "vulture", 
+var animalsNouns = ["flamingo", "hedgehog", "owl", "elephant", "pussycat", "alligator", "dachsund", "poodle", "beagle", "crocodile", "kangaroo",
+      "wallaby", "woodpecker", "eagle", "falcon", "canary", "parrot", "parakeet", "hamster", "gerbil", "squirrel", "rat", "dove", "toucan",
+      "raccoon", "vulture", "peacock", "goldfish", "rook", "koala", "skunk", "goat", "rooster", "fox", "porcupine", "llama", "grasshopper",
+      "gorilla", "monkey", "seahorse", "wombat", "wolf", "giraffe", "badger", "lion", "mouse", "beetle", "cricket", "nightingale",
+      "hawk", "trout", "squid", "octopus", "sloth", "snail", "locust", "baboon", "lemur", "meerkat", "oyster", "frog", "toad", "jellyfish",
+      "butterfly", "caterpillar", "tiger", "hyena", "zebra", "snail", "pig", "weasel", "donkey", "penguin", "crane", "buzzard", "vulture",
       "rhino", "hippopotamus", "dolphin", "sparrow", "beaver", "moose", "minnow", "otter", "bat", "mongoose", "swan", "firefly", "platypus"];
 var everydayNouns = ["mirror", "knife", "fork", "spork", "spoon", "tupperware", "minivan", "suburb", "lamp", "desk", "stereo", "television", "TV",
       "book", "car", "truck", "soda", "door", "video", "game", "computer", "calender", "tree", "plant", "flower", "chimney", "attic", "kitchen",
-      "garden", "school", "wallet", "bottle"]  
+      "garden", "school", "wallet", "bottle"]
 var professionNouns = ["doctor", "lawyer", "ninja", "writer", "samurai", "surgeon", "clerk", "artist", "actor", "engineer", "mechanic",
-      "comedian", "fireman", "nurse", "RockStar", "musician", "carpenter", "plumber", "cashier", "electrician", "waiter", "president", "governor", 
+      "comedian", "fireman", "nurse", "RockStar", "musician", "carpenter", "plumber", "cashier", "electrician", "waiter", "president", "governor",
       "senator", "scientist", "programmer", "singer", "dancer", "director", "mayor", "merchant", "detective", "investigator", "navigator", "pilot",
       "priest", "cowboy", "stagehand", "soldier", "ambassador", "pirate", "miner", "police"];
-var fantasyNouns = ["centaur", "wizard", "gnome", "orc", "troll", "sword", "fairy", "pegasus", "halfling", "elf", "changeling", "ghost", 
-      "knight", "squire", "magician", "witch", "warlock", "unicorn", "dragon", "wyvern", "princess", "prince", "king", "queen", "jester", 
+var fantasyNouns = ["centaur", "wizard", "gnome", "orc", "troll", "sword", "fairy", "pegasus", "halfling", "elf", "changeling", "ghost",
+      "knight", "squire", "magician", "witch", "warlock", "unicorn", "dragon", "wyvern", "princess", "prince", "king", "queen", "jester",
       "tower", "castle", "kraken", "seamonster", "mermaid", "psychic", "seer", "oracle"];
-var grossNouns = ["slime", "bug", "roach", "fluid", "pus", "booger", "spit", "boil", "blister", "orifice", "secretion", "mucus", "phlegm", 
-      "centipede", "beetle", "fart", "snot", "crevice", "flatulence", "juice", "mold", "mildew", "germs", "discharge", "toilet", "udder", "odor", "substance", 
+var grossNouns = ["slime", "bug", "roach", "fluid", "pus", "booger", "spit", "boil", "blister", "orifice", "secretion", "mucus", "phlegm",
+      "centipede", "beetle", "fart", "snot", "crevice", "flatulence", "juice", "mold", "mildew", "germs", "discharge", "toilet", "udder", "odor", "substance",
       "fluid", "moisture", "garbage", "trash", "bug"];
-var musicNouns = ["violin", "flute", "bagpipe", "guitar", "symphony", "orchestra", "piano", "trombone", "tuba", "opera", "drums", 
+var musicNouns = ["violin", "flute", "bagpipe", "guitar", "symphony", "orchestra", "piano", "trombone", "tuba", "opera", "drums",
       "harpsichord", "harp", "harmonica", "accordion", "tenor", "soprano", "baritone", "cello", "viola", "piccolo", "ukelele", "woodwind", "saxophone",
       "bugle", "trumpet", "sousaphone", "cornet", "stradivarius", "marimbas", "bells", "timpani", "bongos", "clarinet", "recorder", "oboe", "conductor",
       "singer"];
-var horrorNouns =  ["murderer", "chainsaw", "knife", "sword", "murder", "devil", "killer", "psycho", "ghost", "monster", "godzilla", "werewolf", 
-      "vampire", "demon", "graveyard", "zombie", "mummy", "curse", "death", "grave", "tomb", "beast", "nightmare", "frankenstein", "specter", 
+var horrorNouns = ["murderer", "chainsaw", "knife", "sword", "murder", "devil", "killer", "psycho", "ghost", "monster", "godzilla", "werewolf",
+      "vampire", "demon", "graveyard", "zombie", "mummy", "curse", "death", "grave", "tomb", "beast", "nightmare", "frankenstein", "specter",
       "poltergeist", "wraith", "corpse", "scream", "massacre", "cannibal", "skull", "bones", "undertaker", "zombie", "creature", "mask", "psychopath",
       "fiend", "satanist", "moon", "fullMoon"];
-var jewelryNouns = ["earrings", "ring", "necklace", "pendant", "choker", "brooch", "bracelet", "cameo", "charm", "bauble", "trinket", "jewelry", 
+var jewelryNouns = ["earrings", "ring", "necklace", "pendant", "choker", "brooch", "bracelet", "cameo", "charm", "bauble", "trinket", "jewelry",
       "anklet", "bangle", "locket", "finery", "crown", "tiara", "blingBling", "chain", "rosary", "jewel", "gemstone", "beads", "armband", "pin",
       "costume", "ornament", "treasure"]
 var placesNouns = ["swamp", "graveyard", "cemetery", "park", "building", "house", "river", "ocean", "sea", "field", "forest", "woods", "neighborhood",
       "city", "town", "suburb", "country", "meadow", "cliffs", "lake", "stream", "creek", "school", "college", "university", "library", "bakery",
-      "shop", "store", "theater", "garden", "canyon", "highway", "restaurant", "cafe", "diner", "street", "road", "freeway", "alley"]; 
-var scifiNouns = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy", 
+      "shop", "store", "theater", "garden", "canyon", "highway", "restaurant", "cafe", "diner", "street", "road", "freeway", "alley"];
+var scifiNouns = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy",
       "computer", "future", "timeMachine", "wormHole", "timeTraveler", "scientist", "invention", "martian", "pluto", "jupiter", "saturn", "mars",
       "quasar", "blackHole", "warpDrive", "laser", "orbit", "gears", "molecule", "electron", "neutrino", "proton", "experiment", "photon", "apparatus",
       "universe", "gravity", "darkMatter", "constellation", "circuit", "asteroid"];
 
 // Pulls noun out of array using random number sent from generator
 function getNoun(y) {
-  switch(y) {
-    case "animals": 
-      return animalsNouns;
-    case "profession": 
-      return professionNouns; 
-    case "fantasy":  
-      return fantasyNouns;
-    case "music":
-      return musicNouns;
-    case "horror":
-      return horrorNouns;
-    case "gross":
-      return grossNouns;
-    case "everyday":
-      return everydayNouns;
-    case "jewelry":
-      return jewelryNouns;
-    case "places":
-      return placesNouns;
-    case "scifi":
-      return scifiNouns;
-    default:
-      return scifiNouns;
-  } 
+    switch (y) {
+        case "animals":
+            return animalsNouns;
+        case "profession":
+            return professionNouns;
+        case "fantasy":
+            return fantasyNouns;
+        case "music":
+            return musicNouns;
+        case "horror":
+            return horrorNouns;
+        case "gross":
+            return grossNouns;
+        case "everyday":
+            return everydayNouns;
+        case "jewelry":
+            return jewelryNouns;
+        case "places":
+            return placesNouns;
+        case "scifi":
+            return scifiNouns;
+        default:
+            return scifiNouns;
+    }
 }
 
 var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
@@ -293,174 +294,176 @@ var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "pl
 
 // Generates random numbers for getAdj and getNoun functions and returns a new pizza name
 function generator(adj, noun) {
-  var adjectives = getAdj(adj);
-  var nouns = getNoun(noun);
-  var randomAdjective = parseInt(Math.random() * adjectives.length);
-  var randomNoun = parseInt(Math.random() * nouns.length);
-  var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
-  return name;
+    var adjectives = getAdj(adj);
+    var nouns = getNoun(noun);
+    var randomAdjective = parseInt(Math.random() * adjectives.length);
+    var randomNoun = parseInt(Math.random() * nouns.length);
+    var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
+    return name;
 }
 
 // Chooses random adjective and random noun
 function randomName() {
-  var randomNumberAdj = parseInt(Math.random() * adjectives.length);
-  var randomNumberNoun = parseInt(Math.random() * nouns.length);
-  return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
+    var randomNumberAdj = parseInt(Math.random() * adjectives.length);
+    var randomNumberNoun = parseInt(Math.random() * nouns.length);
+    return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
 // These functions return a string of a random ingredient from each respective category of ingredients.
-var selectRandomMeat = function() {
-  var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
-  return randomMeat;
+var selectRandomMeat = function () {
+    var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
+    return randomMeat;
 };
 
-var selectRandomNonMeat = function() {
-  var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
-  return randomNonMeat;
+var selectRandomNonMeat = function () {
+    var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
+    return randomNonMeat;
 };
 
-var selectRandomCheese = function() {
-  var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
-  return randomCheese;
+var selectRandomCheese = function () {
+    var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
+    return randomCheese;
 };
 
-var selectRandomSauce = function() {
-  var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
-  return randomSauce;
+var selectRandomSauce = function () {
+    var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
+    return randomSauce;
 };
 
-var selectRandomCrust = function() {
-  var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
-  return randomCrust;
+var selectRandomCrust = function () {
+    var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
+    return randomCrust;
 };
 
-var ingredientItemizer = function(string) {
-  return "<li>" + string + "</li>";
+var ingredientItemizer = function (string) {
+    return "<li>" + string + "</li>";
 };
 
 // Returns a string with random pizza ingredients nested inside <li> tags
-var makeRandomPizza = function() {
-  var pizza = "";
+var makeRandomPizza = function () {
+    var pizza = "";
 
-  var numberOfMeats = Math.floor((Math.random() * 4));
-  var numberOfNonMeats = Math.floor((Math.random() * 3));
-  var numberOfCheeses = Math.floor((Math.random() * 2));
+    var numberOfMeats = Math.floor((Math.random() * 4));
+    var numberOfNonMeats = Math.floor((Math.random() * 3));
+    var numberOfCheeses = Math.floor((Math.random() * 2));
 
-  for (var i = 0; i < numberOfMeats; i++) {
-    pizza = pizza + ingredientItemizer(selectRandomMeat());
-  }
+    for (var i = 0; i < numberOfMeats; i++) {
+        pizza = pizza + ingredientItemizer(selectRandomMeat());
+    }
 
-  for (var j = 0; j < numberOfNonMeats; j++) {
-    pizza = pizza + ingredientItemizer(selectRandomNonMeat());
-  }
+    for (var j = 0; j < numberOfNonMeats; j++) {
+        pizza = pizza + ingredientItemizer(selectRandomNonMeat());
+    }
 
-  for (var k = 0; k < numberOfCheeses; k++) {
-    pizza = pizza + ingredientItemizer(selectRandomCheese());
-  }
+    for (var k = 0; k < numberOfCheeses; k++) {
+        pizza = pizza + ingredientItemizer(selectRandomCheese());
+    }
 
-  pizza = pizza + ingredientItemizer(selectRandomSauce());
-  pizza = pizza + ingredientItemizer(selectRandomCrust());
+    pizza = pizza + ingredientItemizer(selectRandomSauce());
+    pizza = pizza + ingredientItemizer(selectRandomCrust());
 
-  return pizza;
+    return pizza;
 };
 
 // returns a DOM element for each pizza
-var pizzaElementGenerator = function(i) {
-  var pizzaContainer,             // contains pizza title, image and list of ingredients
-      pizzaImageContainer,        // contains the pizza image
-      pizzaImage,                 // the pizza image itself
-      pizzaDescriptionContainer,  // contains the pizza title and list of ingredients
-      pizzaName,                  // the pizza name itself
-      ul;                         // the list of ingredients
+var pizzaElementGenerator = function (i) {
+    var pizzaContainer,             // contains pizza title, image and list of ingredients
+        pizzaImageContainer,        // contains the pizza image
+        pizzaImage,                 // the pizza image itself
+        pizzaDescriptionContainer,  // contains the pizza title and list of ingredients
+        pizzaName,                  // the pizza name itself
+        ul;                         // the list of ingredients
 
-  pizzaContainer  = document.createElement("div");
-  pizzaImageContainer = document.createElement("div");
-  pizzaImage = document.createElement("img");
-  pizzaDescriptionContainer = document.createElement("div");
+    pizzaContainer = document.createElement("div");
+    pizzaImageContainer = document.createElement("div");
+    pizzaImage = document.createElement("img");
+    pizzaDescriptionContainer = document.createElement("div");
 
-  pizzaContainer.classList.add("randomPizzaContainer");
-  pizzaContainer.style.width = "33.33%";
-  pizzaContainer.style.height = "325px";
-  pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
-  pizzaImageContainer.classList.add("col-md-6");
+    pizzaContainer.classList.add("randomPizzaContainer");
+    pizzaContainer.style.width = "33.33%";
+    pizzaContainer.style.height = "325px";
+    pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
+    pizzaImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "images/pizza.png";
-  pizzaImage.classList.add("img-responsive");
-  pizzaImageContainer.appendChild(pizzaImage);
-  pizzaContainer.appendChild(pizzaImageContainer);
+    pizzaImage.src = "images/pizza.png";
+    pizzaImage.classList.add("img-responsive");
+    pizzaImageContainer.appendChild(pizzaImage);
+    pizzaContainer.appendChild(pizzaImageContainer);
 
 
-  pizzaDescriptionContainer.classList.add("col-md-6");
+    pizzaDescriptionContainer.classList.add("col-md-6");
 
-  pizzaName = document.createElement("h4");
-  pizzaName.innerHTML = randomName();
-  pizzaDescriptionContainer.appendChild(pizzaName);
+    pizzaName = document.createElement("h4");
+    pizzaName.innerHTML = randomName();
+    pizzaDescriptionContainer.appendChild(pizzaName);
 
-  ul = document.createElement("ul");
-  ul.innerHTML = makeRandomPizza();
-  pizzaDescriptionContainer.appendChild(ul);
-  pizzaContainer.appendChild(pizzaDescriptionContainer);
+    ul = document.createElement("ul");
+    ul.innerHTML = makeRandomPizza();
+    pizzaDescriptionContainer.appendChild(ul);
+    pizzaContainer.appendChild(pizzaDescriptionContainer);
 
-  return pizzaContainer;
+    return pizzaContainer;
 };
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
-var resizePizzas = function(size) { 
-  window.performance.mark("mark_start_resize");   // User Timing API function
+var resizePizzas = function (size) {
+    window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // Changes the value for the size of the pizza above the slider
-  function changeSliderLabel(size) {
-    switch(size) {
-      case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
-        return;
-      case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
-        return;
-      case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
-        return;
-      default:
-        console.log("bug in changeSliderLabel");
+    // Changes the value for the size of the pizza above the slider
+    function changeSliderLabel(size) {
+        switch (size) {
+            case "1":
+                document.getElementById("pizzaSize").innerHTML = "Small";
+                return;
+            case "2":
+                document.getElementById("pizzaSize").innerHTML = "Medium";
+                return;
+            case "3":
+                document.getElementById("pizzaSize").innerHTML = "Large";
+                return;
+            default:
+                console.log("bug in changeSliderLabel");
+        }
     }
-  }
 
-  changeSliderLabel(size);
+    changeSliderLabel(size);
 
-// moved outside to its own function
-// TODO: change to 3 sizes? no more xl?
-// Changes the slider value to a percent width
-  function sizeSwitcher(size) {
-    switch (size) {
-      case "1":
-        return 25;
-      case "2":
-        return 33;
-      case "3":
-        return 50;
-      default:
-        console.log("bug in sizeSwitcher");
+    // moved outside to its own function
+    // TODO: change to 3 sizes? no more xl?
+    // Changes the slider value to a percent width
+    function sizeSwitcher(size) {
+        switch (size) {
+            case "1":
+                return 25;
+            case "2":
+                return 33;
+            case "3":
+                return 50;
+            default:
+                console.log("bug in sizeSwitcher");
+        }
     }
-  }
 
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    // move selector out of loop
-    var randPizzas = document.querySelectorAll(".randomPizzaContainer");
-    var sizePerc = sizeSwitcher(size);
-    for (var i = 0; i < randPizzas.length; i++) {
-      // changed to use percents
-      randPizzas[i].style.width = sizePerc + '%';
+    // Iterates through pizza elements on the page and changes their widths
+    function changePizzaSizes(size) {
+        // move selector out of loop, use getElementsByClassName
+        var randPizzas = document.getElementsByClassName("randomPizzaContainer");
+        var sizePerc = sizeSwitcher(size);
+        // calculate length outside loop
+        var rpLen = randPizzas.length;
+        for (var i = 0; i < rpLen; i++) {
+            // changed to use percents
+            randPizzas[i].style.width = sizePerc + '%';
+        }
     }
-  }
 
-  changePizzaSizes(size);
+    changePizzaSizes(size);
 
-  // User Timing API is awesome
-  window.performance.mark("mark_end_resize");
-  window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
-  var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
-  console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
+    // User Timing API is awesome
+    window.performance.mark("mark_end_resize");
+    window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
+    var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
+    console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
 };
 
 window.performance.mark("mark_start_generating"); // collect timing data
@@ -469,7 +472,7 @@ window.performance.mark("mark_start_generating"); // collect timing data
 // This for-loop actually creates and appends all of the pizzas when the page loads
 var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
+    pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
@@ -484,12 +487,12 @@ var frame = 0;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
-  var numberOfEntries = times.length;
-  var sum = 0;
-  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
-    sum = sum + times[i].duration;
-  }
-  console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
+    var numberOfEntries = times.length;
+    var sum = 0;
+    for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
+        sum = sum + times[i].duration;
+    }
+    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
@@ -497,56 +500,62 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
+    frame++;
+    window.performance.mark("mark_start_frame");
 
-  // get top of window
-  var scrtp = document.body.scrollTop;
+    // get top of window
+    var scrtp = document.body.scrollTop;
 
-  // move selector out of loop, pre-calculate phases
-  var items = document.querySelectorAll('.mover');
+    // move selector out of loop, change to use getElementsByClassName
+    var items = document.getElementsByClassName("mover");
 
-  var phases = [
-      100 * Math.sin(scrtp/1250 + 0),
-      100 * Math.sin(scrtp/1250 + 1),
-      100 * Math.sin(scrtp/1250 + 2),
-      100 * Math.sin(scrtp/1250 + 3),
-      100 * Math.sin(scrtp/1250 + 4)
-  ];
+    // pre-calculate phases
+    var phases = [
+        100 * Math.sin(scrtp / 1250 + 0),
+        100 * Math.sin(scrtp / 1250 + 1),
+        100 * Math.sin(scrtp / 1250 + 2),
+        100 * Math.sin(scrtp / 1250 + 3),
+        100 * Math.sin(scrtp / 1250 + 4)
+    ];
 
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.transform = 'translate3d(' + phases[i % 5] + 'px, 0px, 0px)';
-  }
+    // calculate item length outside of loop
+    var itemLength = items.length;
+    for (var i = 0; i < itemLength; i++) {
+        // use transform instead of left style, and trigger 0px Z transform for layering
+        items[i].style.transform = 'translate3d(' + phases[i % 5] + 'px, 0px, 0px)';
+    }
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
-  }
+    // User Timing API to the rescue again. Seriously, it's worth learning.
+    // Super easy to create custom metrics.
+    window.performance.mark("mark_end_frame");
+    window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+    if (frame % 10 === 0) {
+        var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+        logAverageFrame(timesToUpdatePosition);
+    }
 }
 
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  var rows = Math.ceil(screen.height / s);
-  // moved selector outside of loop
-  var movingPizzas = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < rows * cols; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    // changed style to properly reflect image ration
-    elem.style.width = "77px";
-    elem.style.left = (i % cols) * s + 'px';
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    movingPizzas.appendChild(elem);
-  }
-  updatePositions();
+document.addEventListener('DOMContentLoaded', function () {
+    var cols = 8;
+    var s = 256;
+    var rows = Math.ceil(screen.height / s);
+    // moved selector outside of loop, changed to getElementById
+    var movingPizzas = document.getElementById("movingPizzas1");
+
+    // instead of using 200 pizzas, calculate how many are useful
+    for (var i = 0; i < rows * cols; i++) {
+        var elem = document.createElement('img');
+        elem.className = 'mover';
+        elem.src = "images/pizza.png";
+        elem.style.height = "100px";
+        // changed style to properly reflect image ration
+        elem.style.width = "77px";
+        elem.style.left = (i % cols) * s + 'px';
+        elem.style.top = (Math.floor(i / cols) * s) + 'px';
+        movingPizzas.appendChild(elem);
+    }
+    updatePositions();
 });
