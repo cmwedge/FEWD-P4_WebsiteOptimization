@@ -1,30 +1,30 @@
 Front-End Web Developer Nanodegree Project 4
 ============================================
-####Part 1 - Portfolio Main Page Optimization:
+###Part 1 - Portfolio Main Page Optimization:
 
-###index.html
+##index.html
 - Inlined style.css
 - Inlined referenced Google Font
 - Set print CSS stylesheet link to use media query
 - Moved non-critical JavaScript files to end of file and made async
 
-###assets
+##assets
 - Minified CSS
 - Minified JS
 - Compressed and reduced size of pizzeria thumbnail
 
 
-####Part 2 - Pizzeria Page Optimization:
+###Part 2 - Pizzeria Page Optimization:
 
-###assets
+##assets
 - Minified CSS
 - Compressed pizza.png
 - Compressed and resized pizzeria.jpg
 
-###pizza.html
+##pizza.html
 - Added viewport meta tag
 
-###main.js
+##main.js
 - global
  - Moved nouns / adjective arrays to global scope to avoid recreating them every time a pizza was generated
  - Moved sizeSwitcher function outside of changeSliderLabel function
