@@ -26,21 +26,21 @@ Part 2 - Pizzeria Page Optimization:
 
 - main.js
  - global
-  - Moved nouns / adjective arrays to global scope to avoid recreating them every time a pizza was generated
-  - Moved sizeSwitcher function outside of changeSliderLabel function
-  - Removed determineDx function
-  - Moved randomPizza selector out of pizza append loop
+  1 Moved nouns / adjective arrays to global scope to avoid recreating them every time a pizza was generated
+  2 Moved sizeSwitcher function outside of changeSliderLabel function
+  3 Removed determineDx function
+  4 Moved randomPizza selector out of pizza append loop
  - changePizzaSizes
-  - Moved .randomPizzaContainer selector outside loop
-  - Added necessary determineDx functionality
-  - Resize uses percentages instead of pixels
+  1 Moved .randomPizzaContainer selector outside loop
+  2 Added necessary determineDx functionality
+  3 Resize uses percentages instead of pixels
  - updatePositions
-  - Moved scrollTop reference out of loop
-  - Moved phase calculation out of loop
-  - Translate X to move pizzas rather than changing left style
-  - Translate Z 0px to encourage browser to move pizzas to separate layer
+  1 Moved scrollTop reference out of loop
+  2 Moved phase calculation out of loop
+  3 Translate X to move pizzas rather than changing left style
+  4 Translate Z 0px to encourage browser to move pizzas to separate layer
  - DOMContentLoaded handler
-  - Changed pizza.png dimensions to reflect actual dimensions
-  - Removed basicLeft property and simply set left
-  - Moved #movingPizzas1 selector out of loop
-  - Rather than create 200 pizzas, calculate number required (8 per column, enough rows to fill screen)
+  1 Changed pizza.png dimensions to reflect actual dimensions
+  2 Removed basicLeft property and simply set left
+  3 Moved #movingPizzas1 selector out of loop
+  4 Rather than create 200 pizzas, calculate number required (8 per column, enough rows to fill screen)
